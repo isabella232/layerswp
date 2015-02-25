@@ -232,6 +232,7 @@ class Layers_Widgets {
 			array(
 				LAYERS_THEME_SLUG . '-admin-slider-widget',
 				LAYERS_THEME_SLUG . '-admin-content-widget',
+				LAYERS_THEME_SLUG . '-admin-tinymce',
 				'backbone',
 				'jquery',
 				'wp-color-picker',
@@ -250,6 +251,14 @@ class Layers_Widgets {
 						'nonce' => wp_create_nonce( 'layers-widget-actions' )
 					)
 			);
+
+		add_action( 'customize_controls_print_footer_scripts', function() {
+			?>
+			<div class="hidden">
+			<?php wp_editor( '', '_', array() ); ?>
+			</div>
+		<?php
+		}, -10 );
 	}
 
 	/**

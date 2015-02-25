@@ -29,6 +29,17 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
+
+
+			// Ajax for tinyMCE
+			add_filter( 'wp_ajax_layers_tinymce_field', function() {
+				$field_id = $_POST['field_id'];
+				$value = ( ! empty( $_POST['field_value'] ) ? json_decode( $_POST['field_value'] ) : '' );
+				$args = ( ! empty( $_POST['field_args'] ) ? json_decode( $_POST['field_args'] ) : '' );
+
+				wp_editor( $value, $field_id, $args );
+				exit;
+			} );
 		}
 
 		function slider_widget_actions(){

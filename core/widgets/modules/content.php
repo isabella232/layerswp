@@ -377,12 +377,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
-								'type' => 'textarea',
+								'type' => 'tinymce',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
 								'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-								'class' => 'layers-textarea layers-large'
+								'class' => 'layers-tinymce layers-large',
+								'args' => array(),
 							)
 						); ?>
 					</p>
