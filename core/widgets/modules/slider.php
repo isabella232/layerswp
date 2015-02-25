@@ -498,13 +498,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'textarea',
+										'type' => 'tinymce',
 										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'layers-textarea',
-										'rows' => 6
+										'rows' => 6,
+										'options' => array(
+											'editor_settings' => array(
+												'media_buttons' => false,
+												'quicktags'     => array(
+													'buttons' => 'strong,em,link,block,del,ins,img,ul,ol,li,code,close'
+												)
+											)
+										)
 									)
 								); ?>
 							</p>

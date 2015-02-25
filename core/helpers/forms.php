@@ -141,7 +141,11 @@ class Layers_Form_Elements {
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
 		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
-		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
+		if( NULL != $input->data ) {
+			foreach( $input->data as $data_key => $data_value ){
+				$input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"';
+			}
+		}
 
 		// Switch our input type
 		switch( $input->type ) {
@@ -213,7 +217,7 @@ class Layers_Form_Elements {
 			/**
 			* Tiny MCE
 			*/
-			case 'tinymce' : ?>
+			case 'tinymce' : /*?>
 				<div class="layers-form-item" id="layers-tinymce-<?php echo esc_attr( $input->id ); ?>">
 					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
 					data-visual_label="<?php _e( 'Visual Mode' , 'layerswp' ); ?>"
@@ -223,7 +227,10 @@ class Layers_Form_Elements {
 					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
 					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 				</div>
-			<?php break;
+			<?php */
+				$settings = isset( $input->options['editor_settings'] ) ? $input->options['editor_settings'] : array();
+				wp_editor( $input->value, $input->id, array_merge( array( 'default_editor' => 'tinymce' ), $settings ) );
+				break;
 			/**
 			* Image Uploader
 			*/
