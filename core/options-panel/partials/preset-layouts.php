@@ -4,7 +4,7 @@
 		<?php // Instantiate the widget migrator
 		$layers_migrator = new Layers_Widget_Migrator(); ?>
 
-		<?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) { ?>
+		<?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) : ?>
 			<div class="layers-product active  <?php echo ( isset( $template[ 'container-css' ] ) ?  esc_attr( $template[ 'container-css' ] ) : '' ); ?>" tabindex="0">
 				<input name="layes-preset-layout" id="layers-preset-layout-<?php echo $template_key; ?>-radio" class="layers-hide" type="radio" value="<?php echo $template_key; ?>" />
 				<label for="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-radio">
@@ -18,9 +18,16 @@
 					<h3 class="layers-product-name" id="<?php echo esc_attr( $template_key ); ?>"><?php echo esc_html( $template[ 'title' ] ); ?></h3>
 					<div class="layers-product-actions">
 						<a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo esc_attr( $template_key ); ?>"  data-key="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>"><?php _e( 'Select' , 'layerswp' ); ?></a>
+						<?php if ( !empty($template['custom']) ) : ?>
+							<a class="menu-icon dashicons dashicons-admin-generic" href="#"></a>
+							<ul class="edit-preset-menu layers-hide">
+								<li><a class="edit-image" href="#">Edit</a></li>
+								<li><a class="edit-title" href="#">Delete</a></li>
+							</ul>
+						<?php endif; ?>
 					</div>
 				</label>
 			</div>
-		<?php } // Get Preset Layouts ?>
+		<?php endforeach; // Get Preset Layouts ?>
 	</div>
 </div>
