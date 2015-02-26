@@ -212,22 +212,12 @@ class Layers_Widgets {
 
 		// Tiny MCE Initiator
 
-//		wp_register_script(
-//			LAYERS_THEME_SLUG . '-admin-tinymce' ,
-//			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
-//			array(
-//				'editor',
-//				'word-count',
-//				'quicktags',
-//				'wplink',
-//				'wp-fullscreen'
-//			),
-//			LAYERS_VERSION,
-//			true
-//		);
-//		if ( ! class_exists( '_WP_Editors' ) )
-//			require( ABSPATH . WPINC . '/class-wp-editor.php' );
-//		wp_editor( 'testing', 'testw' );
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-tinymce' ,
+			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
+			array('jquery'),
+			LAYERS_VERSION
+		);
 
 		// Widget accordians
 		wp_enqueue_script(
@@ -236,7 +226,6 @@ class Layers_Widgets {
 			array(
 				LAYERS_THEME_SLUG . '-admin-slider-widget',
 				LAYERS_THEME_SLUG . '-admin-content-widget',
-				LAYERS_THEME_SLUG . '-admin-tinymce',
 				'backbone',
 				'jquery',
 				'wp-color-picker',

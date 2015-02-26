@@ -28,10 +28,14 @@ jQuery(document).ready(function($) {
 		});
 	};
 
+	$(document).on('widget-added', function(e, t){
+		console.log(e);
+		console.log(t);
+	});
 
-	$('.tinymce-placeholder').each(function(){
-		var $this = $(this);
-
-		update_tinymce( $this.attr('id') );
-	})
+	//$('.tinymce-placeholder').each(function(){
+	//	var $this = $(this);
+	//
+	//	update_tinymce( $this.attr('id') );
+	//})
 });
