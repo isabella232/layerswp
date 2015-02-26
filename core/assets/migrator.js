@@ -230,7 +230,9 @@ jQuery(document).ready(function($){
                     $that.closest( '.layers-column' ).addClass( 'layers-success' );
                     $that.replaceWith( $a );
                 } else {
-                    $that.closest( '.layers-column' ).addClass( 'layers-ajax-error' );
+                    var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
+                    $that.closest( '.layers-column' ).addClass( 'layers-ajax-error' ).prepend($errorMessage);
+                    $that.closest( '.layers-column' ).find('.layers-section-title, .layers-button').css('visibility','hidden');
                 }
             }
         );
@@ -269,7 +271,10 @@ jQuery(document).ready(function($){
                     if ( results.success ) {
                         $parent.fadeOut(500, function() { $(this).remove(); });
                     } else {
+                        var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
                         $parent.addClass('layers-ajax-error');
+                        $parent.find('.edit-preset-menu').addClass('layers-hide');
+                        $parent.prepend( $errorMessage );
                     }
                 }
             );
