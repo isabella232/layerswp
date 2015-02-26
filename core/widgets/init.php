@@ -216,7 +216,8 @@ class Layers_Widgets {
 			LAYERS_THEME_SLUG . '-admin-tinymce' ,
 			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
 			array('jquery'),
-			LAYERS_VERSION
+			LAYERS_VERSION,
+			true
 		);
 
 		// Widget accordians

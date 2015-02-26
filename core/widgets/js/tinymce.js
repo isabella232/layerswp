@@ -1,8 +1,7 @@
 jQuery(document).ready(function($) {
-	var update_tinymce;
+	var reset_tinymce;
 
-
-	update_tinymce = function( field_id ) {
+	reset_tinymce = function( field_id ) {
 		var $field = $('#' + field_id);
 
 		$.ajax({
@@ -12,30 +11,39 @@ jQuery(document).ready(function($) {
 			url: ajaxurl,
 			data: {
 				action: 'layers_tinymce_field',
-				field_id: field_id,
-				field_value: $field.data('value'),
-				field_args: $field.data('args')
+				field_id: field_id
 			},
 			success: function(resp) {
+				var $wrapper;
+
 				if (resp) {
-					$field.replaceWith(resp);
+					$wrapper = $field.parents('.wp-editor-wrap');
+					$wrapper.html('');
+					$wrapper.replaceWith(resp);
 
 					// init tinymce
-					quicktags({id: field_id});
-					tinymce.execCommand('mceAddEditor', false, field_id);
+//					quicktags({id: field_id});
+					tinymce.execCommand('mceRemoveEditor', true, field_id);
+					tinymce.execCommand('mceAddEditor', true, field_id);
 				}
 			}
 		});
 	};
 
+
+	// when adding a new widget
 	$(document).on('widget-added', function(e, t){
-		console.log(e);
-		console.log(t);
+		var editors = $(t).find('.wp-editor-area');
+
+		$.each(editors, function() {
+			var id = $(this).attr('id');
+
+			reset_tinymce( id );
+		});
 	});
 
-	//$('.tinymce-placeholder').each(function(){
-	//	var $this = $(this);
-	//
-	//	update_tinymce( $this.attr('id') );
-	//})
+	$('.widget .wp-editor-area').each( function() {
+		var id = $(this).attr('id');
+		tinyMCE.execCommand('mceAddEditor', true, id);
+	});
 });
