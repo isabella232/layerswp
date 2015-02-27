@@ -141,6 +141,9 @@ jQuery(document).ready(function($){
 
 				// Trigger color selectors
 				jQuery('.layers-color-selector').wpColorPicker();
+
+				// Trigger save for tinyMCE
+				$slideList.find('li.layers-accordion-item').last().trigger('layers-new-slide');
 			}
 		) // $.post
 	});
