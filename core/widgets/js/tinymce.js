@@ -14,12 +14,8 @@ jQuery(document).ready(function($) {
 				field_id: field_id
 			},
 			success: function(resp) {
-				var $wrapper;
-
 				if (resp) {
-					$wrapper = $field.parents('.wp-editor-wrap');
-					$wrapper.html('');
-					$wrapper.replaceWith(resp);
+					$field.parents('.wp-editor-wrap').replaceWith(resp);
 
 					// init tinymce
 //					quicktags({id: field_id});
@@ -46,4 +42,15 @@ jQuery(document).ready(function($) {
 		var id = $(this).attr('id');
 		tinyMCE.execCommand('mceAddEditor', true, id);
 	});
+
+
+	$('body').on('layers-new-slide', 'li.layers-accordion-item', function(){
+		var $this = $(this),
+			textarea = $this.find('.wp-editor-wrap'),
+			field_id = textarea.attr('id');
+
+		reset_tinymce(field_id);
+	});
+
+
 });
