@@ -18,17 +18,24 @@ jQuery(document).ready(function($) {
 
 				if (resp) {
 					$wrapper = $field.parents('.wp-editor-wrap');
-					$wrapper.html('');
 					$wrapper.replaceWith(resp);
 
 					// init tinymce
 //					quicktags({id: field_id});
-					tinymce.execCommand('mceRemoveEditor', true, field_id);
-					tinymce.execCommand('mceAddEditor', true, field_id);
 				}
 			}
 		});
+
+		$(document).ajaxComplete( function( event, xhr, settings ){
+			tinymce.execCommand('mceRemoveEditor', true, field_id);
+			tinymce.execCommand('mceAddEditor', true, field_id);
+		});
 	};
+
+//	$( document ).on( 'readystatechange' , function( e ){
+//		alert('here');
+//	});
+// maybe use a on load on element
 
 
 	// when adding a new widget
@@ -38,7 +45,7 @@ jQuery(document).ready(function($) {
 		$.each(editors, function() {
 			var id = $(this).attr('id');
 
-			reset_tinymce( id );
+			reset_tinymce(id);
 		});
 	});
 
