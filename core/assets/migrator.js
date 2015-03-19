@@ -222,7 +222,7 @@ jQuery(document).ready(function($){
         $preset_title.parent().remove();
 
         $.post(
-            window.ajaxurl,
+            ajaxurl,
             $page_data,
             function(results){
                 if ( results.success ) {
@@ -264,7 +264,7 @@ jQuery(document).ready(function($){
                 };
 
             $.post(
-                layers_widget_params.ajaxurl,
+                ajaxurl,
                 $page_data,
                 function(results){
                     $parent = $that.parents('.layers-product');
