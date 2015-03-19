@@ -226,11 +226,11 @@ jQuery(document).ready(function($){
             $page_data,
             function(results){
                 if ( results.success ) {
-                    $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
+                    $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori18n.create_preset_complete_message );
                     $that.closest( '.layers-column' ).addClass( 'layers-success' );
                     $that.replaceWith( $a );
                 } else {
-                    var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
+                    var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori18n.ajax_error_message);
                     $that.closest( '.layers-column' ).addClass( 'layers-ajax-error' ).prepend($errorMessage);
                     $that.closest( '.layers-column' ).find('.layers-section-title, .layers-button').css('visibility','hidden');
                 }
@@ -251,7 +251,7 @@ jQuery(document).ready(function($){
     });
 
     $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .delete-preset', function(e){
-        var conf = window.confirm(migratori8n.confirm_delete_message);
+        var conf = window.confirm(migratori18n.confirm_delete_message);
 
         if ( conf ) {
             // "Hi Mom!"
@@ -271,7 +271,7 @@ jQuery(document).ready(function($){
                     if ( results.success ) {
                         $parent.fadeOut(500, function() { $(this).remove(); });
                     } else {
-                        var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
+                        var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori18n.ajax_error_message);
                         $parent.addClass('layers-ajax-error');
                         $parent.find('.edit-preset-menu').addClass('layers-hide');
                         $parent.prepend( $errorMessage );
