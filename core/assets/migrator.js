@@ -222,7 +222,7 @@ jQuery(document).ready(function($){
         $preset_title.parent().remove();
 
         $.post(
-            layers_widget_params.ajaxurl,
+            window.ajaxurl,
             $page_data,
             function(results){
                 if ( results.success ) {
